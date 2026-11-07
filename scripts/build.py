@@ -4,8 +4,8 @@ root=pathlib.Path(__file__).resolve().parents[1]
 dist=root/'dist';dist.mkdir(exist_ok=True)
 for browser in ('chrome','firefox'):
     manifest=root/'platform'/browser/'manifest.json'
-    json.loads(manifest.read_text())
-    target=dist/f'markdown-to-backlog-{browser}-v2.0.0.zip'
+    version=json.loads(manifest.read_text())["version"]
+    target=dist/f'markdown-to-backlog-{browser}-v{version}.zip'
     with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED) as z:
         z.write(manifest,'manifest.json')
         for p in (root/'src').rglob('*'):
