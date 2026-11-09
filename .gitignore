@@ -2,3 +2,6 @@ dist/
 .DS_Store
 node_modules/
 *.log
+
+# Independent policy website repository
+/privacy-policy/
