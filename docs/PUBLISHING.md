@@ -40,6 +40,7 @@ Official: https://developer.chrome.com/docs/webstore/register and https://develo
 
 - Register/sign in to AMO Developer Hub, submit Firefox ZIP for signing/review. Choose listing on AMO for discoverability.
 - Set a stable, unique `browser_specific_settings.gecko.id` before first publication; do not change it for updates.
+- Keep `browser_specific_settings.gecko.data_collection_permissions.required` set to `["none"]` while the extension processes data locally without collecting or transmitting it. New Firefox submissions require this declaration.
 - Install the signed version for persistence. Zen compatibility should be verified independently; it is not guaranteed by Firefox acceptance.
 
 Official: https://extensionworkshop.com/documentation/publish/submitting-an-add-on/
