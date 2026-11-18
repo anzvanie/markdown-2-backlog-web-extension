@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Markdown → Backlog</title><link rel="stylesheet" href="popup.css"></head>
-<body><header><h1>Markdown → Backlog</h1><p>Convert to Backlog notation (not Markdown mode)</p></header>
-<main><div class="toolbar"><button id="getSelection" type="button">Use page selection</button><button id="clear" type="button" class="secondary">Clear</button></div>
-<label for="source">Markdown input</label><textarea id="source" spellcheck="false" placeholder="# Heading&#10;&#10;**Bold** and [link](https://example.com)&#10;&#10;- First item"></textarea>
-<div class="toolbar"><button id="convert" type="button">Convert</button><button id="copy" type="button">Copy result</button></div>
-<label for="output">Backlog notation output</label><textarea id="output" readonly spellcheck="false"></textarea>
-<div class="previewTitle">Preview <small>(rendered Backlog-style approximation)</small></div><div id="preview" class="preview" aria-live="polite"></div>
-<p id="status" role="status"></p><div class="warningsBox"><strong>Conversion notices</strong><ul id="warnings"></ul></div><details><summary>Conversion notes</summary><p>Headings, emphasis, links, images, lists, quotes, code blocks, tables and rules are converted. Backlog notation varies from Markdown: confirm rendering in your project's editor. Complex nested structures and HTML may require manual adjustment.</p></details>
+<body><header><h1 data-i18n="popup_title">Markdown → Backlog</h1><p data-i18n="popup_subtitle">Convert to Backlog notation (not Markdown mode)</p></header>
+<main><div class="toolbar"><button id="getSelection" type="button" data-i18n="btn_use_selection">Use page selection</button><button id="clear" type="button" class="secondary" data-i18n="btn_clear">Clear</button></div>
+<label for="source" data-i18n="label_markdown_input">Markdown input</label><textarea id="source" spellcheck="false" placeholder="# Heading&#10;&#10;**Bold** and [link](https://example.com)&#10;&#10;- First item" data-i18n-placeholder="placeholder_markdown_input"></textarea>
+<div class="toolbar"><button id="convert" type="button" data-i18n="btn_convert">Convert</button><button id="copy" type="button" data-i18n="btn_copy">Copy result</button></div>
+<label for="output" data-i18n="label_output">Backlog notation output</label><textarea id="output" readonly spellcheck="false"></textarea>
+<div class="previewTitle"><span data-i18n="preview_title">Preview</span> <small data-i18n="preview_subtitle">(rendered Backlog-style approximation)</small></div><div id="preview" class="preview" aria-live="polite"></div>
+<p id="status" role="status"></p><div class="warningsBox"><strong data-i18n="conversion_notices">Conversion notices</strong><ul id="warnings"></ul></div><details><summary data-i18n="conversion_notes_summary">Conversion notes</summary><p data-i18n="conversion_notes_body">Headings, emphasis, links, images, lists, quotes, code blocks, tables and rules are converted. Backlog notation varies from Markdown: confirm rendering in your project's editor. Complex nested structures and HTML may require manual adjustment.</p></details>
 </main><script src="converter.js"></script><script src="preview.js"></script><script src="popup.js"></script></body></html>

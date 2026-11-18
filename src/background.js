@@ -1,6 +1,6 @@
 const api=globalThis.browser||globalThis.chrome;
 const MENU_ID='markdown-to-backlog-selection';
-api.runtime.onInstalled.addListener(()=>api.contextMenus.create({id:MENU_ID,title:'Convert selection to Backlog notation',contexts:['selection']}));
+api.runtime.onInstalled.addListener(()=>api.contextMenus.create({id:MENU_ID,title:api.i18n.getMessage('ctx_menu_title'),contexts:['selection']}));
 api.contextMenus.onClicked.addListener(async info=>{
  if(info.menuItemId!==MENU_ID||!info.selectionText)return;
  const token=String(Date.now())+'-'+Math.random().toString(36).slice(2);

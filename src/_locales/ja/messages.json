@@ -1,0 +1,29 @@
+{
+  "ext_name":                  { "message": "Markdown to Backlog Notation" },
+  "ext_description":           { "message": "MarkdownをNulab Backlog記法にローカルで変換します。" },
+  "ext_action_title":          { "message": "Markdown → Backlog" },
+
+  "popup_title":               { "message": "Markdown → Backlog" },
+  "popup_subtitle":            { "message": "Backlog記法に変換（Markdownモード非対応）" },
+  "btn_use_selection":         { "message": "選択範囲を使用" },
+  "btn_clear":                 { "message": "クリア" },
+  "label_markdown_input":      { "message": "Markdown入力" },
+  "placeholder_markdown_input":{ "message": "# 見出し\n\n**太字** と [リンク](https://example.com)\n\n- リスト項目" },
+  "btn_convert":               { "message": "変換" },
+  "btn_copy":                  { "message": "結果をコピー" },
+  "label_output":              { "message": "Backlog記法出力" },
+  "preview_title":             { "message": "プレビュー" },
+  "preview_subtitle":          { "message": "（Backlogスタイルの近似表示）" },
+  "conversion_notices":        { "message": "変換の注意" },
+  "conversion_notes_summary":  { "message": "変換に関するメモ" },
+  "conversion_notes_body":     { "message": "見出し、強調、リンク、画像、リスト、引用、コードブロック、テーブル、水平線が変換されます。Backlog記法はMarkdownとは異なる場合があります。プロジェクトのエディタで表示を確認してください。複雑なネスト構造やHTMLは手動での調整が必要な場合があります。" },
+
+  "msg_selection_loaded":      { "message": "選択範囲を読み込みました。" },
+  "msg_no_selection":          { "message": "選択範囲が見つからないか、このページではスクリプトが許可されていません。右クリックをご使用ください。" },
+  "msg_converted":             { "message": "変換しました。" },
+  "msg_copied":                { "message": "コピーしました。" },
+  "msg_clipboard_unavailable": { "message": "クリップボードが使用できません。Ctrl+Cを押してください。" },
+  "msg_draft_error":           { "message": "保存した下書きを読み込めませんでした。" },
+
+  "ctx_menu_title":            { "message": "選択範囲をBacklog記法に変換" }
+}
