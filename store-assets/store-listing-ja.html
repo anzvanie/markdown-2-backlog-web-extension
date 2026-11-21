@@ -1,0 +1,705 @@
+<title>Store Listing — JA/EN</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: tab-switched store × language-toggle, copyable fields */
+:root {
+  --bg:         #f5f6fa;
+  --surface:    #ffffff;
+  --surface2:   #f0f1f8;
+  --border:     #e0e3f0;
+  --fg:         #1b1e2e;
+  --fg-muted:   #6b7490;
+  --accent:     #4a5cf7;
+  --accent-soft:#eef0fe;
+  --accent-fg:  #3347d4;
+  --good:       #16a34a;
+  --warn:       #d97706;
+  --radius:     10px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:         #0d0f1a;
+    --surface:    #161927;
+    --surface2:   #1e2135;
+    --border:     #272c45;
+    --fg:         #e4e7f8;
+    --fg-muted:   #7d84a8;
+    --accent:     #6475ff;
+    --accent-soft:#1a1f3d;
+    --accent-fg:  #8fa0ff;
+    --good:       #22c55e;
+    --warn:       #f59e0b;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:         #0d0f1a;
+  --surface:    #161927;
+  --surface2:   #1e2135;
+  --border:     #272c45;
+  --fg:         #e4e7f8;
+  --fg-muted:   #7d84a8;
+  --accent:     #6475ff;
+  --accent-soft:#1a1f3d;
+  --accent-fg:  #8fa0ff;
+  --good:       #22c55e;
+  --warn:       #f59e0b;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 48px;
+  min-height: 100%;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap');
+
+/* header */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.page-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  text-wrap: balance;
+}
+.page-subtitle {
+  color: var(--fg-muted);
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+/* store tabs */
+.tab-row {
+  display: flex;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px;
+  width: fit-content;
+}
+.tab-btn {
+  padding: 7px 16px;
+  border: none;
+  background: transparent;
+  color: var(--fg-muted);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  white-space: nowrap;
+}
+.tab-btn.active {
+  background: var(--accent-soft);
+  color: var(--accent-fg);
+}
+
+/* controls row */
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.lang-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+}
+.lang-btn {
+  padding: 5px 12px;
+  border: none;
+  background: transparent;
+  color: var(--fg-muted);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  letter-spacing: .5px;
+}
+.lang-btn.active {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+/* fields */
+.fields { display: flex; flex-direction: column; gap: 16px; }
+
+.field-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.field-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.field-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.field-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.char-badge {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-muted);
+  padding: 2px 7px;
+  background: var(--surface2);
+  border-radius: 4px;
+}
+.char-badge.warn { color: var(--warn); }
+.char-badge.good { color: var(--good); }
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--fg-muted);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  white-space: nowrap;
+}
+.copy-btn:hover { background: var(--accent-soft); color: var(--accent-fg); border-color: var(--accent); }
+.copy-btn.copied { background: var(--accent-soft); color: var(--good); border-color: var(--good); }
+
+.field-body {
+  padding: 14px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--fg);
+  user-select: text;
+}
+.field-body.monospace {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+/* section divider */
+.section-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg-muted);
+  letter-spacing: .3px;
+  margin-bottom: 10px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* store panel */
+.store-panel { display: none; }
+.store-panel.active { display: block; }
+
+/* lang views */
+.lang-view { display: none; }
+.lang-view.active { display: flex; flex-direction: column; gap: 16px; }
+
+/* note */
+.note {
+  font-size: 12px;
+  color: var(--fg-muted);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  line-height: 1.55;
+}
+.note strong { color: var(--fg); }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap">
+
+<div class="page-header">
+  <div>
+    <div class="page-title">Store Listing</div>
+    <div class="page-subtitle">Chrome Web Store &amp; Firefox AMO — EN / JA</div>
+  </div>
+  <div class="tab-row" id="storeTabs">
+    <button class="tab-btn active" data-store="chrome">Chrome Web Store</button>
+    <button class="tab-btn" data-store="firefox">Firefox AMO</button>
+  </div>
+</div>
+
+<div class="controls-row">
+  <div class="lang-toggle" id="langToggle">
+    <button class="lang-btn active" data-lang="ja">JA</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+  </div>
+  <span style="font-size:12px;color:var(--fg-muted)">クリックでコピー →</span>
+</div>
+
+<!-- ═══════════════ CHROME ═══════════════ -->
+<div class="store-panel active" id="panel-chrome">
+
+  <!-- JA -->
+  <div class="lang-view active" id="chrome-ja">
+
+    <div class="section-label">必須項目</div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">名前 / Name</span>
+        <div class="field-meta">
+          <span class="char-badge good">28 / 45文字</span>
+          <button class="copy-btn" onclick="copyField(this)">コピー</button>
+        </div>
+      </div>
+      <div class="field-body">Markdown to Backlog Notation</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">短い説明 / Short description</span>
+        <div class="field-meta">
+          <span class="char-badge" id="chrome-ja-short-count">計算中…</span>
+          <button class="copy-btn" onclick="copyField(this)">コピー</button>
+        </div>
+      </div>
+      <div class="field-body" id="chrome-ja-short">MarkdownをNulab Backlog記法に即座に変換。すべてローカル処理で、データはブラウザ外に送信されません。</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">詳細説明 / Detailed description</span>
+        <div class="field-meta">
+          <button class="copy-btn" onclick="copyField(this)">コピー</button>
+        </div>
+      </div>
+      <div class="field-body">MarkdownをNulab Backlog記法に即座に変換できる拡張機能です。アカウント不要、データ送信なし。
+
+▼ 変換できる要素
+・見出し（# → *）
+・太字・斜体・取り消し線
+・番号付きリスト・箇条書き
+・リンク・画像
+・引用
+・コード（インライン・コードブロック）
+・テーブル
+・水平線
+
+▼ 使い方
+1. ツールバーのアイコンをクリックし、左のパネルにMarkdownを貼り付けます。
+2.「変換」をクリック、または入力するだけでリアルタイムに変換されます。
+3. 結果をBacklogの課題・Wiki・コメントにコピーします。
+
+ページ上のテキストを選択して右クリックし「選択範囲をBacklog記法に変換」を選ぶと、テキストがあらかじめ入力された状態でコンバーターが開きます。
+
+▼ プライバシー
+すべてブラウザ内で処理されます。ネットワーク通信・テレメトリ・アカウントは一切不要です。
+
+▼ 対応範囲
+Nulab BacklogのBacklog記法モード（Markdownモードではない）プロジェクト向けに設計されています。</div>
+    </div>
+
+    <div class="section-label">任意項目</div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">カテゴリ / Category</span>
+        <div class="field-meta">
+          <button class="copy-btn" onclick="copyField(this)">コピー</button>
+        </div>
+      </div>
+      <div class="field-body">Productivity</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">権限の説明 / Permission justification</span>
+        <div class="field-meta">
+          <button class="copy-btn" onclick="copyField(this)">コピー</button>
+        </div>
+      </div>
+      <div class="field-body">contextMenus: 選択テキストの右クリックメニューを追加するために使用します。
+storage: ポップアップを閉じた際に入力中の下書きを保存するために使用します。
+activeTab・scripting: ユーザーがツールバーボタンをクリックした際、アクティブタブから選択テキストを取得するために使用します。
+clipboardWrite: 変換結果をクリップボードにコピーするために使用します。</div>
+    </div>
+
+  </div>
+
+  <!-- EN -->
+  <div class="lang-view" id="chrome-en">
+
+    <div class="section-label">Required fields</div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">Name</span>
+        <div class="field-meta">
+          <span class="char-badge good">28 / 45 chars</span>
+          <button class="copy-btn" onclick="copyField(this)">Copy</button>
+        </div>
+      </div>
+      <div class="field-body">Markdown to Backlog Notation</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">Short description</span>
+        <div class="field-meta">
+          <span class="char-badge" id="chrome-en-short-count">counting…</span>
+          <button class="copy-btn" onclick="copyField(this)">Copy</button>
+        </div>
+      </div>
+      <div class="field-body" id="chrome-en-short">Convert Markdown to Nulab Backlog notation instantly. Works locally — no account needed, no data ever leaves your browser.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">Detailed description</span>
+        <div class="field-meta">
+          <button class="copy-btn" onclick="copyField(this)">Copy</button>
+        </div>
+      </div>
+      <div class="field-body">Paste any Markdown and get Backlog notation instantly — no account needed, no data sent anywhere.
+
+WHAT IT CONVERTS
+• Headings (# → *)
+• Bold, italic, strikethrough
+• Ordered and unordered lists
+• Links and images
+• Blockquotes
+• Code (inline and fenced blocks)
+• Tables
+• Horizontal rules
+
+HOW TO USE
+1. Click the toolbar icon and paste your Markdown into the input panel.
+2. Click "Convert" — or just start typing and watch it update live.
+3. Copy the result to your Backlog issue, wiki, or comment.
+
+You can also select text on any page, right-click, and choose "Convert selection to Backlog notation" to open the converter pre-filled.
+
+PRIVACY
+Everything runs in your browser. No network requests, no telemetry, no accounts.
+
+COMPATIBILITY
+Designed for Nulab Backlog projects that use Backlog notation (not Markdown mode).</div>
+    </div>
+
+    <div class="section-label">Optional fields</div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">Category</span>
+        <div class="field-meta">
+          <button class="copy-btn" onclick="copyField(this)">Copy</button>
+        </div>
+      </div>
+      <div class="field-body">Productivity</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">Permission justification</span>
+        <div class="field-meta">
+          <button class="copy-btn" onclick="copyField(this)">Copy</button>
+        </div>
+      </div>
+      <div class="field-body">contextMenus: Adds a right-click menu item to convert selected text.
+storage: Saves the user's draft input so it persists between popup sessions.
+activeTab + scripting: Reads selected text from the active tab when the user clicks the toolbar button.
+clipboardWrite: Copies the converted output to the clipboard.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ FIREFOX ═══════════════ -->
+<div class="store-panel" id="panel-firefox">
+
+  <!-- JA -->
+  <div class="lang-view active" id="firefox-ja">
+
+    <div class="section-label">必須項目</div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">名前 / Name</span>
+        <div class="field-meta">
+          <span class="char-badge good">28 / 70文字</span>
+          <button class="copy-btn" onclick="copyField(this)">コピー</button>
+        </div>
+      </div>
+      <div class="field-body">Markdown to Backlog Notation</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">概要 / Summary</span>
+        <div class="field-meta">
+          <span class="char-badge" id="firefox-ja-summary-count">計算中…</span>
+          <button class="copy-btn" onclick="copyField(this)">コピー</button>
+        </div>
+      </div>
+      <div class="field-body" id="firefox-ja-summary">MarkdownをNulab Backlog記法に即座に変換。アカウント不要、通信なし — データは一切外部に送信されません。</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">説明 / Description</span>
+        <div class="field-meta">
+          <button class="copy-btn" onclick="copyField(this)">コピー</button>
+        </div>
+      </div>
+      <div class="field-body">MarkdownをNulab Backlog記法に即座に変換できる拡張機能です。アカウント不要、データ送信なし。
+
+【変換できる要素】
+・見出し（# → *）
+・太字・斜体・取り消し線
+・番号付きリスト・箇条書き
+・リンク・画像
+・引用
+・コード（インライン・コードブロック）
+・テーブル
+・水平線
+
+【使い方】
+1. ツールバーのアイコンをクリックし、Markdownを貼り付けます。
+2.「変換」をクリック、または入力するだけでリアルタイムに変換されます。
+3. 結果をBacklogの課題・Wiki・コメントにコピーします。
+
+ページ上のテキストを選択して右クリックし「選択範囲をBacklog記法に変換」を選ぶと、テキストがあらかじめ入力された状態でコンバーターが開きます。
+
+【プライバシー】
+すべてブラウザ内で処理されます。ネットワーク通信・テレメトリ・アカウントは一切不要です。
+
+【対応範囲】
+Nulab BacklogのBacklog記法モード（Markdownモードではない）プロジェクト向けに設計されています。</div>
+    </div>
+
+    <div class="section-label">任意項目（レビュアー向け）</div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">レビュアーへのメモ / Notes to reviewer</span>
+        <div class="field-meta">
+          <button class="copy-btn" onclick="copyField(this)">コピー</button>
+        </div>
+      </div>
+      <div class="field-body">この拡張機能はすべての処理をローカルで行います。外部への通信は一切ありません。
+
+使用する権限：
+- contextMenus: 右クリックメニューに変換項目を追加
+- storage: ポップアップ間で下書きを保存
+- activeTab・scripting: ユーザー操作時にアクティブタブから選択テキストを取得
+- clipboardWrite: 変換結果をクリップボードにコピー
+
+リモートコードの実行はなく、収集・送信するデータもありません。</div>
+    </div>
+
+    <div class="note">
+      <strong>data_collection_permissions について：</strong> manifest.json の <code>browser_specific_settings.gecko.data_collection_permissions.required</code> を <code>["none"]</code> に設定済みです（Firefox 新規申請の必須要件）。
+    </div>
+
+  </div>
+
+  <!-- EN -->
+  <div class="lang-view" id="firefox-en">
+
+    <div class="section-label">Required fields</div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">Name</span>
+        <div class="field-meta">
+          <span class="char-badge good">28 / 70 chars</span>
+          <button class="copy-btn" onclick="copyField(this)">Copy</button>
+        </div>
+      </div>
+      <div class="field-body">Markdown to Backlog Notation</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">Summary</span>
+        <div class="field-meta">
+          <span class="char-badge" id="firefox-en-summary-count">counting…</span>
+          <button class="copy-btn" onclick="copyField(this)">Copy</button>
+        </div>
+      </div>
+      <div class="field-body" id="firefox-en-summary">Instantly convert Markdown to Nulab Backlog notation. Works entirely in your browser — no account, no network requests, no data ever leaves your machine.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">Description</span>
+        <div class="field-meta">
+          <button class="copy-btn" onclick="copyField(this)">Copy</button>
+        </div>
+      </div>
+      <div class="field-body">Paste any Markdown and get Backlog notation instantly — no account needed, no data sent anywhere.
+
+WHAT IT CONVERTS
+• Headings (# → *)
+• Bold, italic, strikethrough
+• Ordered and unordered lists
+• Links and images
+• Blockquotes
+• Code (inline and fenced blocks)
+• Tables
+• Horizontal rules
+
+HOW TO USE
+1. Click the toolbar icon and paste your Markdown into the input panel.
+2. Click "Convert" — or just start typing and watch it update live.
+3. Copy the result to your Backlog issue, wiki, or comment.
+
+You can also select text on any page, right-click, and choose "Convert selection to Backlog notation" to open the converter pre-filled.
+
+PRIVACY
+Everything runs in your browser. No network requests, no telemetry, no accounts.
+
+COMPATIBILITY
+Designed for Nulab Backlog projects that use Backlog notation (not Markdown mode).</div>
+    </div>
+
+    <div class="section-label">Optional (reviewer notes)</div>
+
+    <div class="field-card">
+      <div class="field-header">
+        <span class="field-label">Notes to reviewer</span>
+        <div class="field-meta">
+          <button class="copy-btn" onclick="copyField(this)">Copy</button>
+        </div>
+      </div>
+      <div class="field-body">This extension processes all input locally with no external network requests.
+
+Permissions used:
+- contextMenus: adds a right-click item to convert selected text
+- storage: saves the user's draft between popup sessions
+- activeTab + scripting: reads selected text from the active tab on user action only
+- clipboardWrite: copies converted output to the clipboard
+
+No remote code execution. No data collected or transmitted.</div>
+    </div>
+
+    <div class="note">
+      <strong>data_collection_permissions:</strong> The manifest sets <code>browser_specific_settings.gecko.data_collection_permissions.required</code> to <code>["none"]</code> as required for new Firefox submissions.
+    </div>
+
+  </div>
+</div>
+
+<script>
+const storeTabs = document.querySelectorAll('#storeTabs .tab-btn');
+const langBtns  = document.querySelectorAll('#langToggle .lang-btn');
+let currentStore = 'chrome';
+let currentLang  = 'ja';
+
+function switchStore(store) {
+  currentStore = store;
+  storeTabs.forEach(b => b.classList.toggle('active', b.dataset.store === store));
+  document.querySelectorAll('.store-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + store));
+  applyLang();
+}
+
+function switchLang(lang) {
+  currentLang = lang;
+  langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  applyLang();
+}
+
+function applyLang() {
+  document.querySelectorAll(`#panel-${currentStore} .lang-view`).forEach(v => {
+    v.classList.toggle('active', v.id === `${currentStore}-${currentLang}`);
+  });
+}
+
+storeTabs.forEach(b => b.addEventListener('click', () => switchStore(b.dataset.store)));
+langBtns.forEach(b  => b.addEventListener('click', () => switchLang(b.dataset.lang)));
+
+function copyField(btn) {
+  const body = btn.closest('.field-card').querySelector('.field-body');
+  const text = body.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = currentLang === 'ja' ? 'コピー' : 'Copy';
+      btn.classList.remove('copied');
+    }, 1500);
+  }).catch(() => {
+    const sel = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(body);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  });
+}
+
+// char counts
+function updateCounts() {
+  const fields = {
+    'chrome-ja-short':       { el: document.getElementById('chrome-ja-short'),       counter: document.getElementById('chrome-ja-short-count'),       max: 132 },
+    'chrome-en-short':       { el: document.getElementById('chrome-en-short'),       counter: document.getElementById('chrome-en-short-count'),       max: 132 },
+    'firefox-ja-summary':    { el: document.getElementById('firefox-ja-summary'),    counter: document.getElementById('firefox-ja-summary-count'),    max: 250 },
+    'firefox-en-summary':    { el: document.getElementById('firefox-en-summary'),    counter: document.getElementById('firefox-en-summary-count'),    max: 250 },
+  };
+  for (const { el, counter, max } of Object.values(fields)) {
+    if (!el || !counter) continue;
+    const len = el.textContent.trim().length;
+    counter.textContent = `${len} / ${max}文字`.replace('文字', counter.id.includes('-en-') ? ' chars' : '文字');
+    counter.className = 'char-badge ' + (len > max ? 'warn' : 'good');
+  }
+}
+updateCounts();
+</script>
