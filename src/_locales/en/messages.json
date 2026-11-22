@@ -1,0 +1,29 @@
+{
+  "ext_name":                  { "message": "Markdown to Backlog Notation" },
+  "ext_description":           { "message": "Convert Markdown to Nulab Backlog notation locally." },
+  "ext_action_title":          { "message": "Markdown to Backlog" },
+
+  "popup_title":               { "message": "Markdown → Backlog" },
+  "popup_subtitle":            { "message": "Convert to Backlog notation (not Markdown mode)" },
+  "btn_use_selection":         { "message": "Use page selection" },
+  "btn_clear":                 { "message": "Clear" },
+  "label_markdown_input":      { "message": "Markdown input" },
+  "placeholder_markdown_input":{ "message": "# Heading\n\n**Bold** and [link](https://example.com)\n\n- First item" },
+  "btn_convert":               { "message": "Convert" },
+  "btn_copy":                  { "message": "Copy result" },
+  "label_output":              { "message": "Backlog notation output" },
+  "preview_title":             { "message": "Preview" },
+  "preview_subtitle":          { "message": "(rendered Backlog-style approximation)" },
+  "conversion_notices":        { "message": "Conversion notices" },
+  "conversion_notes_summary":  { "message": "Conversion notes" },
+  "conversion_notes_body":     { "message": "Headings, emphasis, links, images, lists, quotes, code blocks, tables and rules are converted. Backlog notation varies from Markdown: confirm rendering in your project's editor. Complex nested structures and HTML may require manual adjustment." },
+
+  "msg_selection_loaded":      { "message": "Selection loaded." },
+  "msg_no_selection":          { "message": "No selection found, or this page does not allow scripting. Use right-click instead." },
+  "msg_converted":             { "message": "Converted." },
+  "msg_copied":                { "message": "Copied." },
+  "msg_clipboard_unavailable": { "message": "Clipboard unavailable. Press Ctrl+C." },
+  "msg_draft_error":           { "message": "Could not load saved draft." },
+
+  "ctx_menu_title":            { "message": "Convert selection to Backlog notation" }
+}
